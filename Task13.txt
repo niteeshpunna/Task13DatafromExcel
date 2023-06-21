@@ -113,8 +113,9 @@ Excel Sheet Created in Local Disk-F & data is inserted successfully
 
 --------------------------------------------------------------------------------------------------------------
 
-4. Write a Java programn to write data to an Excel fle using Apache POI
-library.
+4. Write a Java programn to write data to an Excel fle using Apache POI library.
+
+Same as Problem -3 
 ----------------------------------------------------------------------------------------------------------------
 S. Write a Java program to read data from an Excel file using Apache
 POI library and print it in the console.
