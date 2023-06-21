@@ -1,0 +1,162 @@
+Write a Java program to write data to an Excel file using Apache POI library.
+1. Create a new Excel workb0ok.
+
+package excelapplications;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+public class CreateExcelWorkbook {
+
+	public static void main(String[] args) throws IOException {
+		
+		try {
+		// Create a new Workbook
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		
+		// Write the workbook to a file
+        FileOutputStream outputStream = new FileOutputStream(new File("F:\\excelguvidemo.xlsx"));
+        
+            workbook.write(outputStream);
+         // Close the workbook
+            workbook.close();
+		}
+        catch (IOException e) {
+            System.out.println(e);     
+           }
+		System.out.println("File Created Successsfully");
+    }
+}
+Output:
+File Created Successsfully 
+// New file named excelguvidemo is created in LocAL Disk- F
+
+--------------------------------------------------------------------------------------------------------------
+	
+2. Create a new sheet with the name "Sheet1".
+3. Write the following data to the sheet:
+Column headers: Name, Age, Email.
+Row 1: John Doe, 30, john@test.com.
+Row 2: Jane Doe, 28, john@test.com.
+Row 3: Bob Smith, 35, jacky@example.com.
+Row 4: Swapnil, 37, įoe@Example.com.
+
+
+package excelapplications;
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+
+public class excelDataInsert {
+public static void main(String[] args) throws IOException {
+		
+		// Create a new Workbook
+		XSSFWorkbook wb = new XSSFWorkbook();
+		
+		// Create a new Sheet
+		Sheet sheet = wb.createSheet("GUVI DEMO");
+		
+		// Write column headers
+		Row headerRow = sheet.createRow(0);
+		headerRow.createCell(0).setCellValue("Name");
+		headerRow.createCell(1).setCellValue("Age");
+		headerRow.createCell(2).setCellValue("Email");
+		
+		// Write data rows
+		
+		Object[][] data = {
+				{"John Doe", 30, "john@test.com"},
+				{"Niteesh", 28,"Niteesh@test.com"},
+				{"punna", 29,"punna@test.com"},
+				{"Kumar", 36, "kumar@test.com"}
+		};
+		
+		int rowCount =1;
+		for(Object[] rowData : data) {
+			Row row = sheet.createRow(rowCount++);
+		
+		int columnCount=0;
+		for( Object field : rowData) {
+			Cell cell = row.createCell(columnCount++);
+			if(field instanceof String) {
+				cell.setCellValue((String) field);
+			}else if(field instanceof Integer) {
+				cell.setCellValue((Integer) field);
+			}
+		}
+	}
+		try {
+					
+		// Write the workbook to a file
+        FileOutputStream outputStream = new FileOutputStream(new File("F:\\exceldemo.xlsx"));
+        
+        	wb.write(outputStream);
+         // Close the workbook
+        		wb.close();
+		}
+		catch(IOException e){
+			System.out.println(e);
+		}
+	}
+}
+Output:
+Excel Sheet Created in Local Disk-F & data is inserted successfully
+
+
+--------------------------------------------------------------------------------------------------------------
+
+4. Write a Java programn to write data to an Excel fle using Apache POI
+library.
+----------------------------------------------------------------------------------------------------------------
+S. Write a Java program to read data from an Excel file using Apache
+POI library and print it in the console.
+
+package excelapplications;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+
+
+public class ReadFromExcel {
+
+	public static void main(String[] args) {
+		try {
+			FileInputStream fis = new FileInputStream("F:\\exceldemo.xlsx");
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			
+			// Get the sheet
+			Sheet sheet = wb.getSheet("GUVI DEMO");
+			
+			// Iterate over rows
+			for(int i=0; i<=sheet.getLastRowNum(); i++) {
+						// row.getLastCellNum();
+				for(int j=0; j<sheet.getRow(0).getLastCellNum(); j++) {
+				
+					System.out.print(sheet.getRow(i).getCell(j).getStringCellValue()+" ");
+			}
+			System.out.println();
+		}
+		}
+		catch(IOException e) {
+			System.out.println(e);
+		}
+	}
+}
+
+Console Output:
+Name Age Email
+John Doe 30 john@test.com
+Niteesh 28 Niteesh@test.com
+punna 29 punna@test.com
+Kumar 36 kumar@test.com
